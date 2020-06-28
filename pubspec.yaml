@@ -1,0 +1,51 @@
+name: flutterapp
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.2.2 <3.0.0"
+
+dependencies:
+  email_validator: '^1.0.0'
+  fluttertoast: 3.1.3
+  flutter:
+    sdk: flutter
+
+  firebase_auth: ^0.14.0+5
+  firebase_database: ^3.0.7
+  firebase_messaging: ^5.1.2
+  flutter_email_sender: ^3.0.1
+  charts_flutter: ^0.9.0
+  connectivity: ^0.4.8+6
+
+  cupertino_icons: ^0.1.2
+  flutter_sequence_animation:
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+# For information on the generic Dart part of this file, see the
+# following page: https://www.dartlang.org/tools/pub/pubspec
+
+# The following section is specific to Flutter.
+flutter:
+
+  # The following line ensures that the Material Icons font is
+  # included with your application, so that you can use the icons in
+  # the material Icons class.
+  uses-material-design: true
+
+  fonts:
+    - family: TrajanRegular
+      fonts:
+        - asset: fonts/TrajanPro-Regular.ttf
+
+    - family: TrajanBold
+      fonts:
+        - asset: fonts/TrajanPro-Bold.otf
+  # To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+    - images/
+

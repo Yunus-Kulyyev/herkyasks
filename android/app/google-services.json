@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1009493391613",
+    "firebase_url": "https://herkyasks.firebaseio.com",
+    "project_id": "herkyasks",
+    "storage_bucket": "herkyasks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009493391613:android:036182c93f2111a999e694",
+        "android_client_info": {
+          "package_name": "com.graspery.flutterapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1009493391613-2kbjr0cokigmemv2mle41o1b21sttfn0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDgQy0Q1ImYT16LNOwPQ1LVX07hdh1wzgs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1009493391613-2kbjr0cokigmemv2mle41o1b21sttfn0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

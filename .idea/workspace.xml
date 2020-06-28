@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="4291d75e-2985-476c-913d-988f1b25e7a3" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Nexus_5X_API_27_x86" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dart File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ZrP4CkLZTwCVZXoo6ZgYGdyZDR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
+    <property name="dart.analysis.tool.window.force.activate" value="false" />
+    <property name="io.flutter.reload.alreadyRun" value="true" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\images" />
+      <recent name="C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\lib\models" />
+      <recent name="C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\ios\Runner" />
+      <recent name="C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\android\app" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\assets" />
+      <recent name="C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="main.dart" type="FlutterRunConfigurationType" factoryName="Flutter">
+      <option name="filePath" value="$PROJECT_DIR$/lib/main.dart" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4291d75e-2985-476c-913d-988f1b25e7a3" name="Default Changelist" comment="" />
+      <created>1585594045872</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1585594045872</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="361" y="70" key="#Intentions" timestamp="1591063828364">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="361" y="70" key="#Intentions/0.0.1536.824@0.0.1536.824" timestamp="1591063828364" />
+    <state x="449" y="140" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1593292877133">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="449" y="140" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1536.824@0.0.1536.824" timestamp="1593292877133" />
+    <state x="549" y="152" key="FileChooserDialogImpl" timestamp="1592607187709">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="152" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592607187709" />
+    <state width="1491" height="131" key="GridCell.Tab.0.bottom" timestamp="1593303689444">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1491" height="131" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1593303689444" />
+    <state width="1491" height="131" key="GridCell.Tab.0.center" timestamp="1593303689444">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1491" height="131" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1593303689444" />
+    <state width="1491" height="131" key="GridCell.Tab.0.left" timestamp="1593303689444">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1491" height="131" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1593303689444" />
+    <state width="1491" height="131" key="GridCell.Tab.0.right" timestamp="1593303689444">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1491" height="131" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1593303689444" />
+    <state x="501" y="288" key="ScreenshotRecorder.Options.Dimensions" timestamp="1592607120520">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="501" y="288" key="ScreenshotRecorder.Options.Dimensions/0.0.1536.824@0.0.1536.824" timestamp="1592607120520" />
+    <state x="277" y="54" key="SettingsEditor" timestamp="1590962807683">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="277" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1590962807683" />
+    <state width="300" height="172" key="javadoc.popup.new" timestamp="1593303113262">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="300" height="172" key="javadoc.popup.new/0.0.1536.824@0.0.1536.824" timestamp="1593303113262" />
+    <state x="425" y="187" key="run.anything.popup" timestamp="1593299240410">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="425" y="187" key="run.anything.popup/0.0.1536.824@0.0.1536.824" timestamp="1593299240410" />
+  </component>
+</project>
