@@ -1,12 +1,44 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_email_sender/flutter_email_sender.dart';
+import 'package:flutterapp/invite_friend.dart';
+import 'package:flutterapp/user_authentication/authentication.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class CustomDrawer extends StatelessWidget {
   final Function alertDialogHandler;
   final FirebaseUser user;
+  final BaseAuth auth;
 
-  CustomDrawer(this.alertDialogHandler, this.user);
+  CustomDrawer(this.alertDialogHandler, this.user, this.auth);
+
+
+  Future<void> inviteDialog(BuildContext context) {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return Material(
+          type: MaterialType.transparency,
+          child: Center(
+            child: InviteFriend(),
+          ),
+        );
+      },
+    );
+  }
+
+
+  void toast(String msg) {
+    Fluttertoast.showToast(
+        msg: msg,
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIos: 2,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 12.0);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +71,21 @@ class CustomDrawer extends StatelessWidget {
               title: Text('User email'),
               subtitle: SelectableText(user.email),
             ),
-            Spacer(), // use this
+            ListTile(
+              title: Text('Invite Friends'),
+              onTap: () {
+                inviteDialog(context);
+                /*Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => new InviteFriend()));*/
+              },
+            ),
+            Spacer(), // use
+            ListTile(
+              title: Text('Terms & Conditions',
+                style: TextStyle(
+                    color: Colors.white
+                ),),
+            ),// this
             ListTile(
               title: Text('Sign Out',
               style: TextStyle(
@@ -51,9 +97,20 @@ class CustomDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              title: Text('Delete Account',
+              title: Text('Reset Password',
                 style: TextStyle(
                     color: Colors.white
+                ),
+              ),
+              onTap: () {
+                auth.resetPassword(user.email);
+                toast("Check your email for password reset");
+              },
+            ),
+            ListTile(
+              title: Text('Delete Account',
+                style: TextStyle(
+                    color: Colors.redAccent
                 ),
               ),
               onTap: () async {
@@ -62,48 +119,8 @@ class CustomDrawer extends StatelessWidget {
             ),
           ],
         ),
-        /*child: ListView(
-          // Important: Remove any padding from the ListView.
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              child: Container(
-                height: 60.0,
-                width: 60.0,
-                child: Image.asset(
-                  'assets/sacstate.png',
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text('User ID'),
-              subtitle: SelectableText(user.uid),
-            ),
-            ListTile(
-              title: Text('User email'),
-              subtitle: SelectableText(user.email),
-            ),
-            Divider(
-              endIndent: 8.0,
-              indent: 8.0,
-              color: Colors.grey,
-            ),
-            ListTile(
-              title: Text('Sign Out'),
-              onTap: () {
-                alertDialogHandler(0);
-              },
-            ),
-            ListTile(
-              title: Text('Delete Account'),
-              onTap: () async {
-                alertDialogHandler(1);
-              },
-            ),
-          ],
-        ),*/
       )
     );
   }
+
 }

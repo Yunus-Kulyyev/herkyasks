@@ -6,16 +6,6 @@ import 'package:flutterapp/user_authentication/signin_or_register.dart';
 import 'package:flutterapp/utility/connection.dart';
 
 void main() => runApp(MyApp());
-/*
-void main() {
-  */
-/*ConnectionStatusSingleton connectionStatus = ConnectionStatusSingleton.getInstance();
-  connectionStatus.initialize();*//*
-
-  runApp(MyApp());
-
-}
-*/
 
 class MyApp extends StatelessWidget {
   @override

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-List<String> results;
-
 class RadioTypeQuestion extends StatefulWidget {
   final List<String> surveyModel;
   final int questionIndex;
   final Key key;
+  List<String> results;
 
   RadioTypeQuestion(this.key, this.surveyModel, this.questionIndex) : super(key: key);
 
@@ -14,11 +13,13 @@ class RadioTypeQuestion extends StatefulWidget {
   RadioTypeQuestionState createState() => RadioTypeQuestionState();
 
   List<String> getSelectedAnswer() {
+    print("YUNUS:  " + results.toString());
     return results;
   }
 }
 
 class RadioTypeQuestionState extends State<RadioTypeQuestion> {
+  String _groupValue = "";
   String _selectedAnswer;
   String currentQuestionNumber = "Question 2";
   String questionItself = "How often do you dine at SacState cafeterias?";
@@ -37,7 +38,7 @@ class RadioTypeQuestionState extends State<RadioTypeQuestion> {
   }
 
   void constructQuestion() {
-    results = new List();
+    widget.results = new List();
     currentQuestionNumber = 'Question ' + widget.questionIndex.toString();
 
     answers = new List();
@@ -49,8 +50,8 @@ class RadioTypeQuestionState extends State<RadioTypeQuestion> {
       }
     }
 
-    results.add(questionItself);
-    //results.add(answers[0]);
+    widget.results.add(questionItself);
+    //widget.results.add(answers[0]);
   }
 
   @override
@@ -65,6 +66,37 @@ class RadioTypeQuestionState extends State<RadioTypeQuestion> {
     toast('TEST');
     super.dispose();
   }*/
+
+  Widget _myRadioButton({String ans, int index}) {
+    return Container(
+      color: _selectedAnswer == ans
+          ? Colors.greenAccent.withAlpha(100)
+          : Colors.white,
+      child: Column(
+        children: [
+          RadioListTile(
+            value: ans,
+            activeColor: Colors.greenAccent,
+            groupValue: _groupValue,
+            onChanged: (String value) {
+              widget.results = new List();
+              widget.results.add(questionItself);
+              widget.results.add(value);
+              print("Value: " + value);
+              setState(() {
+                _groupValue = value;
+                _selectedAnswer = value;
+              });
+            },
+            title: Text(ans),
+          ),
+          Divider(
+            height: index < answers.length ? 1.0 : 0.0,
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,43 +116,7 @@ class RadioTypeQuestionState extends State<RadioTypeQuestion> {
                     child: Column(
                       children: List.generate(answers.length, (int index) {
                         final using = answers[index];
-                        return GestureDetector(
-                          onTapUp: (detail) {
-                            setState(() {
-                              _selectedAnswer = using;
-                              results.clear();
-                              results.add(questionItself);
-                              results.add(_selectedAnswer);
-                            });
-                          },
-                          child: Container(
-                            height: 50.0,
-                            color: _selectedAnswer == using
-                                ? Colors.orangeAccent.withAlpha(100)
-                                : Colors.white,
-                            child: Column(
-                              children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Radio(
-                                        activeColor: Colors.orangeAccent,
-                                        value: using,
-                                        groupValue: _selectedAnswer,
-                                        onChanged: (String value) {
-                                          setState(() {
-                                            _selectedAnswer = value;
-                                          });
-                                        }),
-                                    Text(using)
-                                  ],
-                                ),
-                                Divider(
-                                  height: index < answers.length ? 1.0 : 0.0,
-                                ),
-                              ],
-                            ),
-                          ),
-                        );
+                        return _myRadioButton(ans: using, index: index);
                       }),
                     ),
                   ),

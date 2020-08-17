@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:email_validator/email_validator.dart';
@@ -44,29 +46,83 @@ class _RegisterState extends State<Register> {
     );
   }
 
+  showAlertDialog(BuildContext context){
+    AlertDialog alert = AlertDialog(
+      content: new Row(
+        children: [
+          CircularProgressIndicator(),
+          Container(
+              margin: EdgeInsets.only(left: 5),
+              child:Text("Registering..." )
+          ),
+        ],
+      ),
+    );
+    showDialog(barrierDismissible: false,
+      context:context,
+      builder:(BuildContext context){
+        return alert;
+      },
+    );
+
+  }
+
   Future<void> validateEmailPassword(String email, String password) async {
     String result = '';
+    showAlertDialog(context);
 
     if(email == null || password == null) {
       result = 'Please enter (@csus) email and password';
     } else {
       if(password.length >= 4) {
-        if (EmailValidator.validate(email)) {
+        if (EmailValidator.validate(email.trim())) {
           if (email.trim().split("@").contains("csus.edu")) {
             result = 'Valid CSUS email';
 
-            userId = await widget.auth.signUp(email, password);
-            //widget.auth.sendEmailVerification();
-            //_showVerifyEmailSentDialog();
-            result = 'Signed up user: $userId';
 
-            if (userId.length > 0 && userId != null) {
+            try {
+              userId = await widget.auth.signUp(email, password);
+              result = 'Signed up user: $userId';
+
+              if (userId.length > 0 && userId != null) {
+                try {
+                  await widget.auth.sendEmailVerification();
+                  toast("Verification email was sent.");
+                  Navigator.of(context).pop();
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MyHomePage(widget.auth))
+                  );
+                } catch (e) {
+                  print("An error occured while trying to send email verification");
+                  print(e.message);
+                }
+
+                /*Navigator.of(context).pop();
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyHomePage(widget.auth))
+                );*/
+              }
+            } catch (e) {
+              if (Platform.isAndroid) {
+                toast(e.message);
+              } else if (Platform.isIOS) {
+                switch (e.code) {
+                  case 'Error 17011':
+                    toast("User not found");
+                    break;
+                  case 'Error 17009':
+                    toast('Invalid Password');
+                    break;
+                  case 'Error 17020':
+                    toast("Network error");
+                    break;
+                }
+              }
               Navigator.of(context).pop();
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => MyHomePage(widget.auth))
-              );
             }
+
             /*Navigator.of(context).pop();
             Navigator.push(
                 context,
@@ -74,16 +130,17 @@ class _RegisterState extends State<Register> {
             );*/
           } else {
             result = 'Must be CSUS email';
+            toast(result);
           }
         } else if (!email.isNotEmpty) {
           result = 'Please enter your CSUS email';
+          toast(result);
         }
       } else {
         result = 'Password must be at least 4 characters long';
+        toast(result);
       }
     }
-
-    toast(result);
   }
 
   @override

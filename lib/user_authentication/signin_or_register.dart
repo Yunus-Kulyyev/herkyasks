@@ -1,16 +1,15 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutterapp/user_authentication/register.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
 import '../main_menu.dart';
 import 'authentication.dart';
 import 'login.dart';
 
 class SignInOrRegister extends StatefulWidget {
-  //SignInOrRegister({this.auth});
   final BaseAuth auth = new Auth();
 
   @override
@@ -19,20 +18,8 @@ class SignInOrRegister extends StatefulWidget {
 
 
 class _SignInOrRegisterState extends State<SignInOrRegister> {
-  String _userId = "";
 
-  void toast(String msg) {
-    Fluttertoast.showToast(
-        msg: msg,
-        toastLength: Toast.LENGTH_LONG,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIos: 2,
-        backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 12.0
-    );
-  }
-
+  Widget screen;
   bool isLoggedIn;
   @override
   void initState() {
@@ -40,28 +27,67 @@ class _SignInOrRegisterState extends State<SignInOrRegister> {
       DeviceOrientation.portraitUp,
     ]);
 
+
+    screen = splashScreen(context);
     isLoggedIn = false;
-    FirebaseAuth.instance.currentUser().then((user) => user != null
-        ? setState(() {
-      isLoggedIn = true;
-      toast('Logged in successfully!');
-      Navigator.pop(context);
-      Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => MyHomePage(widget.auth))
-      );
-    }) : null);
+
+    FirebaseAuth.instance.currentUser().then((user) {
+      if(user != null) {
+        print("IS EMAIL VERIFIED: " + user.isEmailVerified.toString());
+        changePage();
+      } else {
+        thisPage();
+      }
+    });
 
     super.initState();
   }
 
+  void thisPage() {
+    Future.delayed(const Duration(milliseconds: 1500), ()  {
+      setState(() {
+        screen = mainScreen(context);
+      });
+    });
+  }
+
+  void changePage() {
+    Future.delayed(const Duration(milliseconds: 1500), ()  {
+      setState(() {
+        isLoggedIn = true;
+        Navigator.pop(context);
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => MyHomePage(widget.auth))
+        );
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context){
-    return mainScreen(context);
+    return screen;
+  }
+
+  Widget splashScreen(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(
+        SystemUiOverlayStyle(statusBarColor: Colors.transparent));
+
+    return Container(
+      height: double.infinity,
+      width: double.infinity,
+      padding: EdgeInsets.all(50),
+      decoration: BoxDecoration(
+        color: Colors.white,
+      ),
+      child: Image.asset(
+        'assets/sacstate.png',
+        fit: BoxFit.contain,
+      ),
+    );
   }
 
   Widget mainScreen(BuildContext context) {
-    // this below line is used to make notification bar transparent
     SystemChrome.setSystemUIOverlayStyle(
         SystemUiOverlayStyle(statusBarColor: Colors.transparent));
 

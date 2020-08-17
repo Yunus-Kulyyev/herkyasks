@@ -92,12 +92,12 @@ class CheckboxTypeQuestionState extends State<CheckboxTypeQuestion> {
                                       child: Container(
                                         height: 50.0,
                                         color: question.isSelected
-                                            ? Colors.orangeAccent.withAlpha(100)
+                                            ? Colors.greenAccent.withAlpha(100)
                                             : Colors.white,
                                         child: Row(
                                           children: <Widget>[
                                             Checkbox(
-                                                activeColor: Colors.orangeAccent,
+                                                activeColor: Colors.greenAccent,
                                                 value: question.isSelected,
                                                 onChanged: (bool value) {
                                                   setState(() {

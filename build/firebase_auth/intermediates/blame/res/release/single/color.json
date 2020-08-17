@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "C:\\Users\\yunus\\Downloads\\herkyasks-master\\herkyasks-master\\build\\firebase_auth\\intermediates\\res\\merged\\release\\color\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\yunus\\.gradle\\caches\\transforms-2\\files-2.1\\831142e511581880a39fcc0dbdfcb242\\jetified-play-services-base-16.0.1\\res\\color\\common_google_signin_btn_text_dark.xml"
+    },
+    {
+        "merged": "C:\\Users\\yunus\\Downloads\\herkyasks-master\\herkyasks-master\\build\\firebase_auth\\intermediates\\res\\merged\\release\\color\\common_google_signin_btn_text_light.xml",
+        "source": "C:\\Users\\yunus\\.gradle\\caches\\transforms-2\\files-2.1\\831142e511581880a39fcc0dbdfcb242\\jetified-play-services-base-16.0.1\\res\\color\\common_google_signin_btn_text_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\yunus\\Downloads\\herkyasks-master\\herkyasks-master\\build\\firebase_auth\\intermediates\\res\\merged\\release\\color\\common_google_signin_btn_tint.xml",
+        "source": "C:\\Users\\yunus\\.gradle\\caches\\transforms-2\\files-2.1\\831142e511581880a39fcc0dbdfcb242\\jetified-play-services-base-16.0.1\\res\\color\\common_google_signin_btn_tint.xml"
+    }
+]

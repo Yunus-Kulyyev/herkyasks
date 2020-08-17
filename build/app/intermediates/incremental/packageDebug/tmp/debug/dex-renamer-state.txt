@@ -1,4 +1,1 @@
-#Sat Jun 27 17:16:11 PDT 2020
-base.0=C\:\\Users\\yunus\\Downloads\\herkyasks-master\\herkyasks-master\\build\\app\\intermediates\\dex\\debug\\out\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex
+#Fri Aug 14 14:08:18 PDT 2020

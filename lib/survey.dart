@@ -1,14 +1,13 @@
 import 'dart:ui' as ui;
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterapp/main_menu.dart';
 import 'package:flutterapp/models/question_types/check_box_question.dart';
-import 'package:flutterapp/models/question_types/image_style_question.dart';
+import 'package:flutterapp/models/question_types/free_response.dart';
 import 'package:flutterapp/models/question_types/radio_question.dart';
 import 'package:flutterapp/models/question_types/slider_question.dart';
 import 'package:flutterapp/models/survey_model.dart';
-import 'package:flutterapp/user_authentication/authentication.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Survey extends StatelessWidget {
@@ -32,7 +31,7 @@ class SplashScreen extends StatefulWidget {
   }
 }
 
-class SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin{
   int curIndex = 0;
 
   final databaseReference = FirebaseDatabase.instance.reference();
@@ -40,6 +39,9 @@ class SplashScreenState extends State<SplashScreen> {
   FirebaseUser user;
   int numberOfQuestions;
   List<Widget> questions;
+  AnimationController pulseAnimation;
+  List<String> imageLinks;
+
 
   void toast(String msg) {
     Fluttertoast.showToast(
@@ -71,6 +73,8 @@ class SplashScreenState extends State<SplashScreen> {
         questions.add(new CheckboxTypeQuestion(new Key(i.toString()), widget._surveyModel.getOptions()[i], i+1));
       } else if(type.contains('slider')) {
         questions.add(new SliderTypeQuestion(new Key(i.toString()), widget._surveyModel.getOptions()[i], i+1));
+      } else if(type.contains('free')) {
+        questions.add(new FreeResponseQuestion(new Key(i.toString()), widget._surveyModel.getOptions()[i], i+1));
       }
     }
   }
@@ -78,18 +82,55 @@ class SplashScreenState extends State<SplashScreen> {
   void saveResults() {
     databaseReference.child("Users").child(user.uid).child("Responses").child(widget._surveyModel.getTitle()).set(results);
     databaseReference.child("Results").child(widget._surveyModel.getTitle()).child(user.uid).set(results);
+
+    String newKey = databaseReference.push().key;
+    databaseReference.child("Users").child(user.uid).child("Keys").child(
+        newKey).set("true");
+    /*if(widget._surveyModel.getPrize() != 'none') {
+      databaseReference.child("Users").child(user.uid).child("Keys").child(
+          widget._surveyModel.getPrize()).set("true");
+    }*/
   }
 
   Future<void> getUser() async {
     user = await FirebaseAuth.instance.currentUser();
   }
 
+  double animSize = 20;
   @override
   void initState() {
     super.initState();
 
+    imageLinks = new List();
+    pulseAnimation = new AnimationController(
+      vsync: this,
+      duration: new Duration(milliseconds: 1000),
+      lowerBound: 0.5,
+    );
+
+    pulseAnimation.forward();
+    pulseAnimation.addStatusListener((status) {
+      setState(() {
+        if (status == AnimationStatus.completed) {
+          pulseAnimation.reverse();
+        } else if (status == AnimationStatus.dismissed) {
+          pulseAnimation.forward();
+        }
+      });
+    });
+   /* pulseAnimation.addListener(() {
+      setState(() {
+        animSize = pulseAnimation.value * 250;
+      });
+    });*/
+
     getUser();
     surveySetUp();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   Widget finishedWidget() {
@@ -150,6 +191,10 @@ class SplashScreenState extends State<SplashScreen> {
       temp = (questions[curIndex] as SliderTypeQuestion).getSelectedAnswer();
 
       results[temp[0]] = temp.getRange(1, 2).toString();
+    } else if(questions[curIndex] is FreeResponseQuestion) {
+      temp = (questions[curIndex] as FreeResponseQuestion).getSelectedAnswer();
+
+      results[temp[0]] = temp.getRange(1, 2).toString();
     }
 
     if(temp.length > 1) {
@@ -178,7 +223,8 @@ class SplashScreenState extends State<SplashScreen> {
       navWidget = new InkWell(
         onTap: ()=> setState((){
           saveResults();
-          Navigator.pop(context);
+          getImages();
+          //Navigator.pop(context);
         }),
         child: Center(
             child: Text('Finish',
@@ -249,6 +295,135 @@ class SplashScreenState extends State<SplashScreen> {
             margin: EdgeInsets.only(left: index == 0 ? 0.0 : 2.0),
           );
         }),
+      ),
+    );
+  }
+
+  Future<void> keyDialog() {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return Material(
+          type: MaterialType.transparency,
+          child: Center(
+            child: getKeyAnimation(),
+          ),
+        );
+      },
+    );
+  }
+
+  void getImages() {
+    //toast(user.uid);
+    databaseReference.child('Prizes').child('123456789').once().then((DataSnapshot dataSnap) {
+      Map<dynamic, dynamic> resultsMap = dataSnap.value;
+      resultsMap.forEach((key, value) {
+        Map<dynamic, dynamic> responseMap = value;
+        responseMap.forEach((key2, value2) {
+          if(key2 == 'image') {
+            imageLinks.add(value2.toString());
+          }
+        });
+      });
+      keyDialog();
+    });
+  }
+
+  Widget getKeyAnimation() {
+    return new Container(
+      height: 500,
+      width: 300,
+      alignment: Alignment.center,
+      child: Column(
+        children: [
+          Text('You got a new key!',
+            style: TextStyle(
+                fontSize: 20,
+                color: Colors.white,
+                fontFamily: "TrajanBold"
+            ),
+          ),
+          Text('use the key to unlock the chest',
+            style: TextStyle(
+                fontSize: 16,
+                color: Colors.white,
+                fontFamily: "TrajanRegular"
+            ),
+          ),
+          new AnimatedBuilder(
+            animation: pulseAnimation,
+            child: new Container(
+              height: 150.0,
+              width: 150.0,
+              child: new Image.asset('assets/key.png',
+                width: 100,
+                height: 100,),
+            ),
+            builder: (BuildContext context, Widget _widget) {
+              return new Transform.scale(
+                scale: pulseAnimation.value,
+                child: _widget,
+              );
+            },
+          ),
+          Text('Win one of the following items',
+            style: TextStyle(
+                fontSize: 14,
+                color: Colors.white,
+                fontFamily: "TrajanBold"
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            padding: EdgeInsets.all(4),
+            decoration: BoxDecoration(
+                color: Colors.white,
+                border: Border.all(width: 4, color: Colors.amber),
+                borderRadius: BorderRadius.circular(10)
+            ),
+            child: CarouselSlider(
+              options: CarouselOptions(
+                autoPlay: true,
+                viewportFraction: 1,
+                autoPlayInterval: Duration(seconds: 1),
+              ),
+              items: imageLinks.map((item) => Container(
+                child: Center(
+                    child: Image.network(item, fit: BoxFit.contain, width: 750)
+                ),
+              )).toList(),
+            ),
+          ),
+          SizedBox(
+            height: 20,
+          ),
+          InkWell(
+            onTap: () {
+              Navigator.of(context, rootNavigator: true).pop();
+              Navigator.pop(context);
+              pulseAnimation.dispose();
+            },
+            child: Container(
+              height: 50,
+              decoration: BoxDecoration(
+                  color: Colors.black26,
+                  border: Border.all(color: Colors.white),
+                  borderRadius: BorderRadius.circular(10)
+              ),
+              margin: EdgeInsets.fromLTRB(30, 0, 30, 0),
+              child: Center(
+                  child: Text(
+                    'Got it!',
+                    style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white),
+                  )),
+            ),
+          ),
+        ],
       ),
     );
   }

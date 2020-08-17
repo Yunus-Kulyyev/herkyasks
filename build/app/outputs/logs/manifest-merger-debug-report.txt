@@ -14,6 +14,7 @@ MERGED from [:connectivity] C:\Users\yunus\Downloads\herkyasks-master\herkyasks-
 MERGED from [:connectivity_macos] C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\build\connectivity_macos\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [:flutter_email_sender] C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\build\flutter_email_sender\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-19:12
 MERGED from [:firebase_messaging] C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-20:12
+MERGED from [:share] C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\yunus\.gradle\caches\transforms-2\files-2.1\6c5a1a33c151bf1b1b969a4997bc8337\appcompat-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\yunus\.gradle\caches\transforms-2\files-2.1\210c71008f015c3b91d15e84e1f0562e\jetified-firebase-messaging-20.0.0\AndroidManifest.xml:17:1-37:12
 MERGED from [com.google.firebase:firebase-database:17.0.0] C:\Users\yunus\.gradle\caches\transforms-2\files-2.1\6a28a2830615b410a4d5ccdc0b237df2\jetified-firebase-database-17.0.0\AndroidManifest.xml:15:1-36:12
@@ -179,6 +180,8 @@ MERGED from [:flutter_email_sender] C:\Users\yunus\Downloads\herkyasks-master\he
 MERGED from [:flutter_email_sender] C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\build\flutter_email_sender\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_messaging] C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [:firebase_messaging] C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\build\firebase_messaging\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:share] C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
+MERGED from [:share] C:\Users\yunus\Downloads\herkyasks-master\herkyasks-master\build\share\intermediates\library_manifest\debug\AndroidManifest.xml:5:5-44
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\yunus\.gradle\caches\transforms-2\files-2.1\6c5a1a33c151bf1b1b969a4997bc8337\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.appcompat:appcompat:1.1.0] C:\Users\yunus\.gradle\caches\transforms-2\files-2.1\6c5a1a33c151bf1b1b969a4997bc8337\appcompat-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.firebase:firebase-messaging:20.0.0] C:\Users\yunus\.gradle\caches\transforms-2\files-2.1\210c71008f015c3b91d15e84e1f0562e\jetified-firebase-messaging-20.0.0\AndroidManifest.xml:20:5-44

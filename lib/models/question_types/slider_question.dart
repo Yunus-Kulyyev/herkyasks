@@ -37,8 +37,8 @@ class SliderTypeQuestionState extends State<SliderTypeQuestion> {
       }
     }
 
-    defaultChoice = answers[0];
-    defaultQuestionPosition = answers.length.floor().toDouble();
+    defaultQuestionPosition = answers.length.floor().toDouble()/2-1;
+    defaultChoice = answers[defaultQuestionPosition.toInt()];
     results.add(currentQuestionItself);
     //results.add(answers[0]);
   }

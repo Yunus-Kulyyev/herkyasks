@@ -1,0 +1,4 @@
+#Tue Aug 04 23:34:54 PDT 2020
+base.0=C\:\\Users\\yunus\\Downloads\\herkyasks-master\\herkyasks-master\\build\\app\\intermediates\\dex\\release\\shrunkDex\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

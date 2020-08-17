@@ -9,12 +9,14 @@ class SurveyModel {
   String dueDate;
   List<List<String>> options;
   Map rawMap;
+  String prizeKey;
 
 
   SurveyModel(String title, Map rawMap) {
     this.title = title;
     this.rawMap = rawMap;
     options = new List();
+    prizeKey = 'none';
 
     Map<dynamic, dynamic> contentMap = rawMap;
     contentMap.forEach((key, value) {
@@ -23,6 +25,9 @@ class SurveyModel {
       }
       else if(key == 'Date') {
         dueDate = value.toString();
+      }
+      else if(key == 'Prize') {
+        prizeKey = value.toString();
       }
       else if(key == 'Questions') {
         Map<dynamic, dynamic> questionsMap = value;
@@ -41,6 +46,10 @@ class SurveyModel {
         });
       }
     });
+  }
+
+  String getPrize() {
+    return prizeKey;
   }
 
   List<List<String>> getOptions() {
